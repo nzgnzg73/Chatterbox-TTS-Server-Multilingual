@@ -245,13 +245,13 @@ def load_model() -> bool:
 
         model_device = resolved_device_str
         logger.info(f"Final device selection: {model_device}")
-
+#✅✅✅✅ 
         # Get configured model_repo_id for logging and context,
         # though from_pretrained might use its own internal default if not overridden.
         model_repo_id_config = config_manager.get_string(
             "model.repo_id", "ResembleAI/chatterbox"
         )
-
+#✅✅✅✅ 
         logger.info(
             f"Attempting to load model directly using from_pretrained (expected from Hugging Face repository: {model_repo_id_config} or library default)."
         )
