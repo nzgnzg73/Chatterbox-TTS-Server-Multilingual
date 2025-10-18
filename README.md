@@ -41,8 +41,8 @@ Enhanced [Chatterbox TTS](https://github.com/resemble-ai/chatterbox) server with
 
 1. **Download**
    ```bash
-   git clone https://github.com/mirbehnam/Chatterbox-TTS-Server-windows-easyInstallation.git
-   cd Chatterbox-TTS-Server
+   git clone https://github.com/nzgnzg73/Chatterbox-TTS-Server-Multilingual.git
+   cd Chatterbox-TTS-Server-Multilingual
    ```
 
 2. **Install**
@@ -62,8 +62,8 @@ Enhanced [Chatterbox TTS](https://github.com/resemble-ai/chatterbox) server with
 
 1. **Clone Repository**
    ```bash
-   git clone https://github.com/mirbehnam/Chatterbox-TTS-Server-windows-easyInstallation.git
-   cd Chatterbox-TTS-Server
+   git clone https://github.com/nzgnzg73/Chatterbox-TTS-Server-Multilingual.git
+   cd Chatterbox-TTS-Server-Multilingual
    ```
 
 2. **Setup Environment**
