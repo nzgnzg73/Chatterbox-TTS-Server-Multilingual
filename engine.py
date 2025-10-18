@@ -248,11 +248,9 @@ def load_model() -> bool:
 
         # Get configured model_repo_id for logging and context,
         # though from_pretrained might use its own internal default if not overridden.
-        #✅✅✅✅ یہاں چینجنگ ہو رہی ہے جو نیچے کو لکھا ہے
         model_repo_id_config = config_manager.get_string(
-            "model.repo_id", "nzgnzg73/chatterbox"
+            "model.repo_id", "ResembleAI/chatterbox"
         )
-        #✅✅✅✅ یہاں چینج مکمل ہو چکی ہے یہ اینڈ ہے اوپر جو کوڈنگ آخر تک ہے
 
         logger.info(
             f"Attempting to load model directly using from_pretrained (expected from Hugging Face repository: {model_repo_id_config} or library default)."
@@ -262,9 +260,7 @@ def load_model() -> bool:
             # The ChatterboxTTS.from_pretrained method handles downloading if the model is not in the cache.
            
            
-            #✅✅✅✅ یہاں چینجنگ ہو رہی ہے جو نیچے کو لکھا ہے
             chatterbox_model = ChatterboxTTS.from_pretrained(device=model_device)
-            #✅✅✅✅ یہاں چینج مکمل ہو چکی ہے یہ اینڈ ہے اوپر جو کوڈنگ آخر تک ہے
 
            
             # The actual repo ID used by from_pretrained is often internal to the library,
@@ -333,9 +329,7 @@ def load_multilingual_model() -> bool:
         logger.info(f"Loading multilingual model (PatchedChatterboxTTS) on {model_device}...")
 
         # مدل چندزبانه را بارگذاری کنید
-        #✅✅✅✅ یہاں چینجنگ ہو رہی ہے جو نیچے کو لکھا ہے
         multilingual_model = PatchedChatterboxTTS.from_pretrained(device=model_device)
-        #✅✅✅✅ یہاں چینج مکمل ہو چکی ہے یہ اینڈ ہے اوپر جو کوڈنگ آخر تک ہے
         
         # --- مرحله کلیدی: جایگزینی مدل اصلی با مدل چندزبانه ---
         # حالا مدل چندزبانه را به عنوان مدل اصلی (chatterbox_model) تنظیم می کنیم
