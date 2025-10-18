@@ -81,13 +81,13 @@ class PatchedChatterboxTTS(ChatterboxMultilingualTTS):
                 self.tfmr = LlamaModel(cfg)
 
         t3 = PatchedT3(T3Config.multilingual()) # Use our patched T3
-        
+         #✅✅✅✅
         t3_state = load_safetensors(ckpt_dir / "t3_mtl23ls_v2.safetensors")
         if "model" in t3_state.keys():
             t3_state = t3_state["model"][0]
         t3.load_state_dict(t3_state)
         t3.to(device).eval()
-
+ #✅✅✅✅
         s3gen = S3Gen()
         s3gen.load_state_dict(
             torch.load(ckpt_dir / "s3gen.pt", weights_only=True)
@@ -97,7 +97,7 @@ class PatchedChatterboxTTS(ChatterboxMultilingualTTS):
         tokenizer = MTLTokenizer(
             str(ckpt_dir / "grapheme_mtl_merged_expanded_v1.json")
         )
-
+ #✅✅✅✅
         conds = None
         if (builtin_voice := ckpt_dir / "conds.pt").exists():
             conds = Conditionals.load(builtin_voice).to(device)
