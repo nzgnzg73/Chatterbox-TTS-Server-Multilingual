@@ -94,7 +94,7 @@ class PatchedChatterboxTTS(ChatterboxMultilingualTTS):
         )
         s3gen.to(device).eval()
 
-        tokenizer = MTLTokenizer(
+        tokenizer = grapheme_mtl_merged_expanded_v1(
             str(ckpt_dir / "grapheme_mtl_merged_expanded_v1.json")
         )
  #✅✅✅✅
