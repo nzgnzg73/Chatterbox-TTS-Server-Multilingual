@@ -79,32 +79,32 @@ class PatchedChatterboxTTS(ChatterboxMultilingualTTS):
                 cfg = self.cfg
                 cfg._attn_implementation = "eager"
                 self.tfmr = LlamaModel(cfg)
-
+#✅✅✅✅
         t3 = PatchedT3(T3Config.multilingual()) # Use our patched T3
-         #✅✅✅✅
-        t3_state = load_safetensors(ckpt_dir / "t3_mtl23ls_v2.safetensors")
+        
+        t3_state = load_safetensors(ckpt_dir / "t3_23lang.safetensors")
         if "model" in t3_state.keys():
             t3_state = t3_state["model"][0]
         t3.load_state_dict(t3_state)
         t3.to(device).eval()
- #✅✅✅✅
+
         s3gen = S3Gen()
         s3gen.load_state_dict(
             torch.load(ckpt_dir / "s3gen.pt", weights_only=True)
         )
         s3gen.to(device).eval()
 
-        tokenizer = grapheme_mtl_merged_expanded_v1(
-            str(ckpt_dir / "grapheme_mtl_merged_expanded_v1.json")
+        tokenizer = MTLTokenizer(
+            str(ckpt_dir / "mtl_tokenizer.json")
         )
- #✅✅✅✅
+
         conds = None
         if (builtin_voice := ckpt_dir / "conds.pt").exists():
             conds = Conditionals.load(builtin_voice).to(device)
 
         return cls(t3, s3gen, ve, tokenizer, device, conds=conds)
 
-
+#✅✅✅✅
 # --- Global Module Variables ---
 multilingual_model: Optional[PatchedChatterboxTTS] = None
 MULTILINGUAL_MODEL_LOADED: bool = False
@@ -245,13 +245,13 @@ def load_model() -> bool:
 
         model_device = resolved_device_str
         logger.info(f"Final device selection: {model_device}")
-#✅✅✅✅ 
+#✅✅✅✅
         # Get configured model_repo_id for logging and context,
         # though from_pretrained might use its own internal default if not overridden.
         model_repo_id_config = config_manager.get_string(
             "model.repo_id", "ResembleAI/chatterbox"
         )
-#✅✅✅✅ 
+#✅✅✅✅
         logger.info(
             f"Attempting to load model directly using from_pretrained (expected from Hugging Face repository: {model_repo_id_config} or library default)."
         )
