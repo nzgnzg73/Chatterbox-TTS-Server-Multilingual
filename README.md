@@ -1,5 +1,7 @@
 # 🌍 Multilingual Chatterbox TTS Server (Windows Edition)
 
+[Chatterbox TTS](https://github.com/mirbehnam/Chatterbox-TTS-Server-windows-easyInstallation.git)
+
 Enhanced [Chatterbox TTS](https://github.com/resemble-ai/chatterbox) server with **multilingual support** and **easy Windows installation**. Generate high-quality speech in 24+ languages with voice cloning capabilities.
 
 ## 📺 Video Tutorials
