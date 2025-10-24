@@ -9,9 +9,7 @@ server:
   log_file_max_size_mb: 10
   log_file_backup_count: 5
 model:
-  #✅✅✅✅ یہاں چینجنگ ہو رہی ہے جو نیچے کو لکھا ہے
   repo_id: ResembleAI/chatterbox
-  #✅✅✅✅ یہاں چینج مکمل ہو چکی ہے یہ اینڈ ہے اوپر جو کوڈنگ آخر تک ہے
 tts_engine:
   device: cuda
   predefined_voices_path: voices

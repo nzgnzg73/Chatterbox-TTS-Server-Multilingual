@@ -1,6 +1,6 @@
 # requirements.txt
 
-git+https://github.com/nzgnzg73/chatterbox.git@v1-multilingual
+git+https://github.com/mirbehnam/chatterbox.git@v1-multilingual
 
 
 # Core Web Framework
