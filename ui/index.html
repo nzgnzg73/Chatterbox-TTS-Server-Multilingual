@@ -92,6 +92,75 @@
                                     </svg>
                                     Generate Speech
                                 </button>
+                                <!--.............................................................................................-->
+
+<div class="flex flex-wrap items-center gap-x-6 gap-y-4 mb-6 relative">
+    <!-- Restart Button with LED lights -->
+    <button id="restart-btn" class="btn-primary relative overflow-hidden flex items-center justify-center px-6 py-3 text-white font-semibold rounded-lg shadow-lg">
+        🔄 Restart Server 🔄
+        <!-- LED Lights Container -->
+        <span class="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <!-- 8 lights as spans -->
+            <span class="led-light" style="--i:0;"></span>
+            <span class="led-light" style="--i:1;"></span>
+            <span class="led-light" style="--i:2;"></span>
+            <span class="led-light" style="--i:3;"></span>
+            <span class="led-light" style="--i:4;"></span>
+            <span class="led-light" style="--i:5;"></span>
+            <span class="led-light" style="--i:6;"></span>
+            <span class="led-light" style="--i:7;"></span>
+        </span>
+    </button>
+</div>
+
+<script>
+document.getElementById("restart-btn").addEventListener("click", async () => {
+    try {
+        const response = await fetch("/api/restart", { method: "POST" });
+        const data = await response.json();
+        alert(data.message); // Server restarting...
+    } catch (err) {
+        alert("Failed to call restart API: " + err);
+    }
+});
+</script>
+
+<style>
+/* LED lights style */
+.led-light {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: red;
+    animation: spin-led 3s linear infinite;
+    animation-delay: calc(var(--i) * 0.25s);
+}
+
+/* place lights at corners and edges */
+.led-light:nth-child(1) { top: -4px; left: -4px; background: red; }
+.led-light:nth-child(2) { top: -4px; left: 50%; transform: translateX(-50%); background: orange; }
+.led-light:nth-child(3) { top: -4px; right: -4px; background: yellow; }
+.led-light:nth-child(4) { top: 50%; right: -4px; transform: translateY(-50%); background: green; }
+.led-light:nth-child(5) { bottom: -4px; right: -4px; background: blue; }
+.led-light:nth-child(6) { bottom: -4px; left: 50%; transform: translateX(-50%); background: purple; }
+.led-light:nth-child(7) { bottom: -4px; left: -4px; background: pink; }
+.led-light:nth-child(8) { top: 50%; left: -4px; transform: translateY(-50%); background: cyan; }
+
+@keyframes spin-led {
+    0% { transform: rotate(0deg) translate(50px) rotate(0deg); }
+    100% { transform: rotate(360deg) translate(50px) rotate(-360deg); }
+}
+
+/* optional hover effect */
+#restart-btn:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+</style>
+
+<!--.............................................................................................-->
+                                
                                 <label for="split-text-toggle"
                                     class="flex items-center cursor-pointer text-sm label-base select-none">
                                     <input type="checkbox" id="split-text-toggle" name="split_text"
