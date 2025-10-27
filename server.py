@@ -185,6 +185,42 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+
+
+
+## Restart Server Button 👇👇👇👇👇👇👇👇👇
+
+
+
+@app.post("/api/restart", tags=["System"])
+async def restart_engine_endpoint():
+    """
+    Restart the entire Chatterbox TTS server safely.
+    """
+    import sys
+    import os
+    import asyncio
+
+    logger.warning("⚠ Restart request received via /api/restart endpoint.")
+
+    async def _delayed_restart():
+        # تھوڑا سا انتظار (تاکہ response client کو مل جائے) پھر process کو دوبارہ چلائیں
+        await asyncio.sleep(2)
+        python = sys.executable
+        os.execl(python, python, *sys.argv)
+
+    # بک گراؤنڈ میں ری سٹارٹ کا کام شروع کرو
+    asyncio.create_task(_delayed_restart())
+
+    return JSONResponse({"status": "restarting", "message": "Server restarting..."})
+
+
+
+## Restart Server Button End 👆👆👆👆👆👆👆👆👆
+
+
+
 # --- CORS Middleware ---
 app.add_middleware(
     CORSMiddleware,
