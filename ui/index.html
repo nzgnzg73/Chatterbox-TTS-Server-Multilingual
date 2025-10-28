@@ -50,15 +50,24 @@
             </div>
         </nav>
 
+
+
         <!-- Main Content Area -->
         <main>
             <div class="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8">
 
                 <div id="notification-area" class="mb-6 space-y-3"></div>
 
+
+
+
+
                 <div class="card-base">
                     <form id="tts-form" action="#" method="post" class="flex flex-col" onsubmit="return false;">
                         <div class="p-6 sm:p-8">
+
+
+
                             <label for="text" class="label-base">Chatterbox TTS Server Multilanguage</label>
                             <label for="text" class="label-base">Generate high-quality speech in 24+ languages with voice cloning capabilities.
 
@@ -66,33 +75,119 @@
                              <label for="text" class="label-base">Contact Email: nzgnzg73@gmail.com</label>
                              <label for="text" class="label-base">🎥 YouTube Channel: @nzg73 🔗 https://youtube.com/@NZG73 
 </label>
-                             <h2 id="tts-form-header" class="card-header">Generate Speech</h2>
+                             
 
                             <div class="mb-5">
                                 <label for="text" class="label-base">Text to synthesize</label>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">
                                     Enter the text you want to convert to speech. For audiobooks, you can paste long
                                     chapters.
-                                </p>
-                                <div class="relative">
-                                    <textarea name="text" id="text" rows="8" class="textarea-base"
-                                        placeholder="Enter text here..." required></textarea>
-                                    <div class="absolute bottom-2.5 right-3 text-xs text-slate-500 dark:text-slate-400">
-                                        <span id="char-count">0</span> Characters
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="flex flex-wrap items-center gap-x-6 gap-y-4 mb-6">
-                                <button type="button" id="generate-btn" class="btn-primary">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1.5 inline-block">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
-                                    </svg>
-                                    Generate Speech
-                                </button>
+
+                                    <!-- 🌟 Added Buttons -->
+
+<!--.............................................................................................-->
+
+
+                               <!-- ✳ Chat Box Section -->
+<div class="relative mb-6">
+    <textarea name="text" id="text" rows="8" class="textarea-base"
+        placeholder="Enter text here..." required></textarea>
+    <div class="absolute bottom-2.5 right-3 text-xs text-slate-500 dark:text-slate-400">
+        <span id="char-count">0</span> Characters
+    </div>
+</div>
+
+<!-- ✳ Button Row -->
+<div class="flex flex-wrap items-center gap-x-4 gap-y-3 mb-6 justify-start">
+    <button type="button" id="generate-btn" class="btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1.5 inline-block">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+        </svg>
+        Generate Speech
+    </button>
+
+    <!-- 🟢 تین نئے بٹن تھوڑے فاصلے کے ساتھ -->
+    <button type="button" id="copy-btn" class="btn-secondary px-4 py-2 rounded-md">📋 Copy</button>
+    <button type="button" id="paste-btn" class="btn-secondary px-4 py-2 rounded-md ml-2">📥 Paste</button>
+    <button type="button" id="clear-btn" class="btn-danger px-4 py-2 rounded-md ml-2">🗑 Clear</button>
+</div>
+
+<!-- 🔔 Popup container -->
+<div id="popup-msg"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-sm px-4 py-2 rounded-lg shadow-lg opacity-0 pointer-events-none transition-all duration-500 z-50">
+</div>
+
+<!-- ✳ Script -->
+<script>
+    const textarea = document.getElementById("text");
+    const copyBtn = document.getElementById("copy-btn");
+    const pasteBtn = document.getElementById("paste-btn");
+    const clearBtn = document.getElementById("clear-btn");
+    const popup = document.getElementById("popup-msg");
+
+    // 📢 Popup message
+    function showPopup(message) {
+        popup.innerText = message;
+        popup.classList.remove("opacity-0", "pointer-events-none");
+        setTimeout(() => {
+            popup.classList.add("opacity-0", "pointer-events-none");
+        }, 2000);
+    }
+
+    // ✅ Copy Button
+    copyBtn.addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(textarea.value);
+            showPopup("✅ Text copied!");
+        } catch (err) {
+            showPopup("⚠ Clipboard blocked — copy manually.");
+        }
+    });
+
+    // ✅ Paste Button (fixed for mobile)
+    pasteBtn.addEventListener("click", async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            textarea.value += (textarea.value ? "\n" : "") + text;
+            showPopup("📥 Text pasted!");
+        } catch (err) {
+            // 🟡 fallback popup (mobile-friendly, no layout shift)
+            const input = document.createElement("textarea");
+            input.setAttribute("placeholder", "Paste text here...");
+            input.className =
+                "fixed bottom-10 left-1/2 -translate-x-1/2 w-[90%] h-[100px] border border-slate-400 rounded-xl p-2 bg-white shadow-xl z-[9999]";
+            document.body.appendChild(input);
+
+            input.focus({ preventScroll: true });
+            showPopup("📱 Mobile paste box opened");
+
+            input.addEventListener("blur", () => {
+                textarea.value += (textarea.value ? "\n" : "") + input.value;
+                document.body.removeChild(input);
+                showPopup("📥 Text added manually!");
+            });
+        }
+    });
+
+    // ✅ Clear Button
+    clearBtn.addEventListener("click", () => {
+        textarea.value = "";
+        document.getElementById("char-count").innerText = "0";
+        showPopup("🗑 Cleared!");
+    });
+
+    // ✅ Character Counter
+    textarea.addEventListener("input", () => {
+        document.getElementById("char-count").innerText = textarea.value.length;
+    });
+</script>
+
                                 <!--.............................................................................................-->
+
+
 <div class="flex flex-wrap items-center gap-x-6 gap-y-4 mb-6 relative">
     <!-- Restart Button with LED lights -->
     <button id="restart-btn" class="btn-primary relative overflow-hidden flex items-center justify-center px-6 py-3 text-white font-semibold rounded-lg shadow-lg">
@@ -156,7 +251,10 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
     transform: scale(1.05);
     transition: transform 0.2s;
 }
-</style>
+</style>  
+                                               
+                                             <!-- 🌟 Added Buttons -->
+
 
 <!--.............................................................................................-->
                                 
@@ -517,6 +615,9 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
             </div>
         </footer>
     </div>
+
+                                       <!-- 🌟 Added Buttons -->
+
 <!--.............................................................................................-->
 
     <div id="loading-overlay" class="loading-overlay-base hidden opacity-0" data-state="closed" style="display: none;">
