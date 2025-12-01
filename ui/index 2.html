@@ -50,15 +50,24 @@
             </div>
         </nav>
 
+
+
         <!-- Main Content Area -->
         <main>
             <div class="mx-auto max-w-7xl px-4 py-1 sm:px-6 lg:px-8">
 
                 <div id="notification-area" class="mb-6 space-y-3"></div>
 
+
+
+
+
                 <div class="card-base">
                     <form id="tts-form" action="#" method="post" class="flex flex-col" onsubmit="return false;">
                         <div class="p-6 sm:p-8">
+
+
+
                             <label for="text" class="label-base">Chatterbox TTS Server Multilanguage</label>
                             <label for="text" class="label-base">Generate high-quality speech in 24+ languages with voice cloning capabilities.
 
@@ -90,7 +99,7 @@
         </svg>
     </a>
 </div>
-                           
+                             
 
                             <div class="mb-5">
                                 <label for="text" class="label-base">Text to synthesize</label>
@@ -222,6 +231,7 @@
     </button>
 </div>
 
+
 <script>
 document.getElementById("restart-btn").addEventListener("click", async () => {
     try {
@@ -267,39 +277,20 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
     transition: transform 0.2s;
 }
 </style>  
-
-
-
-
-
                                                
-                                             <!-- 🌟end Added Buttons -->
+                                             <!-- 🌟 end Added Buttons -->
 
 
 <!--.............................................................................................-->
+                                
+<!--.............................................................................................-->
 
-<!-- ============ START: Main Settings Arrow  ============ -->
+                                <!-- 🌟 Accordion Start Added Buttons -->
 
 
 
-<!-- ============ start: main collapsible section ============ -->
 
-<!-- Main Settings Collapse Button -->
-<button type="button" id="main-settings-toggle" class="w-full text-left mb-6 focus:outline-none group">
-    <div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-300 dark:border-slate-600">
-        <span class="text-sm font-bold label-base uppercase tracking-wider">Main Settings</span>
-        <span class="text-slate-500 dark:text-slate-400 transition-transform duration-300 ease-in-out group-hover:text-indigo-500">
-            <svg id="main-settings-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform duration-300">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-            </svg>
-        </span>
-    </div>
-</button>
-
-<!-- Main Settings Content - تمام سیٹنگز اس ڈیو کے اندر ہیں -->
-<div id="main-settings-content">
-
-<div class="mb-6">
+                              <div class="mb-6">
     <label for="split-text-toggle"
         class="flex items-center cursor-pointer text-sm label-base select-none">
         <input type="checkbox" id="split-text-toggle" name="split_text"
@@ -450,6 +441,7 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
             </div>
     </details>
     </div>
+ 
 
 
 <!--.............................................................................................-->
@@ -505,7 +497,7 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                     <!-- 🌟 Accordion end Added Buttons -->
 <!--.............................................................................................-->
 
-
+                              
 
                                             <label for="temperature" class="label-base">Temperature (<span
                                                     id="temperature-value"
@@ -556,6 +548,8 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                                     <option value="en">English (en)</option>
                                                 </select>
 
+<!--.............................................................................................-->
+
 
                                                 <button type="button" id="multilingual-toggle-btn" class="btn-import"
                                                     title="Enable multilingual support (downloads additional models)">
@@ -576,6 +570,7 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                         </div>
                                         <div>
 
+<!--.............................................................................................-->
 
                                             <label for="output-format" class="label-base">Output Format</label>
                                             <select id="output-format" name="output_format" class="select-base w-36">
@@ -680,10 +675,11 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                     </div>
                                 </details>
                             </div>
-
                         </div>
 
-<!--.............................................................................................-->
+
+
+                        <!--.............................................................................................-->
 
                                 <!-- 🌟 Accordion Start Added Buttons -->
 
@@ -722,80 +718,15 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                 </div>
                 <div id="audio-player-container" class="mt-8"></div>
 
-</div> <!-- End of main-settings-content -->
-
-<!-- ============ END: Main Collapsible Section ============ -->
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.getElementById('main-settings-toggle');
-        const contentDiv = document.getElementById('main-settings-content');
-        const arrowIcon = document.getElementById('main-settings-arrow');
-
-        // 1. پیج لوڈ ہونے پر چیک کریں کہ پرانی سیٹنگ کیا تھی (Saved State)
-        const isHidden = localStorage.getItem('mainSettingsHidden') === 'true';
-        
-        // فنکشن جو حالت (State) کو سیٹ کرے گا
-        function applyState(hidden) {
-            if (hidden) {
-                contentDiv.classList.add('hidden'); // چھپا دیں
-                arrowIcon.style.transform = 'rotate(-90deg)'; // تیر کا رخ موڑ دیں
-            } else {
-                contentDiv.classList.remove('hidden'); // دکھا دیں
-                arrowIcon.style.transform = 'rotate(0deg)'; // تیر سیدھا رکھیں
-            }
-        }
-
-        // شروع میں حالت لاگو کریں
-        applyState(isHidden);
-
-        // 2. جب بٹن پر کلک ہو
-        toggleBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // فارم سبمٹ ہونے سے روکیں
-            
-            // چیک کریں کہ ابھی چھپا ہوا ہے یا نہیں
-            const currentlyHidden = contentDiv.classList.contains('hidden');
-            const newState = !currentlyHidden; // الٹ کر دیں
-            
-            // نئی حالت لاگو کریں
-            applyState(newState);
-            
-            // براؤزر کی میموری میں محفوظ کریں
-            localStorage.setItem('mainSettingsHidden', newState);
-        });
-    });
-</script>
 
 
-
-<!-- ============ END: Main Settings Collapsible Section ============ -->
-
-                                       <!-- 🌟 Audio File Name Buttons -->
+                                       <!-- 🌟 Accordion EndAdded Buttons -->
 
 
 <!--.............................................................................................-->
 
-                               
-                <!-- 🌟 Audio Name Section - FORM KE BAHAR RAKHA HAI -->
-                <div class="card-base mt-6">
-                    <div class="p-6 sm:p-8">
-                        <h3 class="card-header mb-4">Audio File Name</h3>
-                        <div class="mb-4">
-                            <label for="audio-name" class="label-base">Custom Audio Name</label>
-                            <div class="flex items-center gap-2">
-                                <input type="text" id="audio-name" name="audio_name" class="input-base flex-grow" 
-                                       placeholder="Enter custom name for audio file (without extension)">
-                                <button type="button" id="set-audio-name-btn" class="btn-primary">
-                                    Set Audio Name
-                                </button>
-                            </div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5">
-                                Set a custom name for the generated audio file. If empty, default name will be used.
-                                <strong>Current name:</strong> <span id="current-audio-name" class="font-semibold">Default</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
+
 
                 <div id="audio-player-container" class="mt-8"></div>
 
@@ -820,6 +751,9 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                     </div>
                 </div>
             </div>
+
+
+
         </main>
 
         <footer class="bg-slate-100 dark:bg-slate-800 py-8 mt-16 border-t border-slate-200 dark:border-slate-700/80">
@@ -839,7 +773,7 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
         </footer>
     </div>
 
-                                 <!-- 🌟 loading Added Buttons -->
+                                       <!-- 🌟 Added Buttons -->
 
 <!--.............................................................................................-->
 
@@ -957,273 +891,65 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
  
 <!--.............................................................................................-->
 
-
-    <!-- Other modals -->
-    <div id="chunk-warning-modal" class="modal-overlay hidden opacity-0" data-state="closed" style="display: none;">
-        <!-- ... existing modal content ... -->
+     <div id="chunk-warning-modal" class="modal-overlay hidden opacity-0" data-state="closed" style="display: none;">
+        <div class="modal-box">
+            <h3 class="modal-title">Chunking Voice Consistency Warning</h3>
+            <div class="modal-content">
+                <p>You are generating with text splitting enabled and not using Predefined Voices or Voice Cloning with
+                    a fixed seed.</p>
+                <p class="mt-2">This combination may result in <strong class="font-semibold">different voices for
+                        different text chunks</strong>, leading to inconsistent audio.</p>
+                <p class="mt-2">For consistent voices across chunks, please use:</p>
+                <ul class="list-disc pl-5 mt-1 space-y-1">
+                    <li>"Predefined Voices" mode.</li>
+                    <li>"Voice Cloning" mode.</li>
+                    <li>A specific integer in "Generation Seed" (not random).</li>
+                </ul>
+            </div>
+            <div class="mt-4 mb-5 flex items-center">
+                <input type="checkbox" id="hide-chunk-warning-checkbox"
+                    class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-600 dark:bg-slate-700 dark:focus:ring-offset-slate-800 dark:checked:bg-indigo-500 dark:checked:border-indigo-500">
+                <label for="hide-chunk-warning-checkbox"
+                    class="ml-2 block text-sm text-slate-700 dark:text-slate-300 cursor-pointer">Do not show this
+                    warning again</label>
+            </div>
+            <div class="modal-actions">
+                <button id="chunk-warning-cancel" type="button" class="btn-secondary">Cancel Generation</button>
+                <button id="chunk-warning-ok" type="button" class="btn-primary">Proceed Anyway</button>
+            </div>
+        </div>
     </div>
 
     <div id="generation-warning-modal" class="modal-overlay hidden opacity-0" data-state="closed"
         style="display: none;">
-        <!-- ... existing modal content ... -->
+        <div class="modal-box">
+            <h3 class="modal-title">Generation Quality Notice</h3>
+            <div class="modal-content">
+                <p>Please be aware that text-to-speech models may sometimes produce unexpected results or artifacts.</p>
+                <p class="mt-2">This can include variations in voice consistency, delivery, or minor audio
+                    imperfections. Experiment with parameters for best results.</p>
+            </div>
+
+
+            <div class="mt-4 mb-5 flex items-center">
+                <input type="checkbox" id="hide-generation-warning-checkbox"
+                    class="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 dark:border-slate-600 dark:bg-slate-700 dark:focus:ring-offset-slate-800 dark:checked:bg-indigo-500 dark:checked:border-indigo-500">
+                <label for="hide-generation-warning-checkbox"
+                    class="ml-2 block text-sm text-slate-700 dark:text-slate-300 cursor-pointer">Do not show this
+                    warning again</label>
+
+            </div>
+            <div class="modal-actions">
+                <button id="generation-warning-acknowledge" type="button" class="btn-primary">Acknowledge &
+                    Generate</button>
+            </div>
+        </div>
     </div>
 
+   
     <script src="script.js" defer></script>
 
-      <script src="script.js" defer></script>
 
-        <script src="script.js" defer></script>
-
-
-
-                               <!-- 🌟 Fixed Custom Audio Name Download Script -->
-     
-                                          <!-- 🌟 Audio File Name -->
-
-                                          <!-- 🌟 Custom Audio Name -->
-
-
-
-        <!-- TEMPORARILY DISABLE THE ORIGINAL SCRIPT -->
-    <!-- <script src="script.js" defer></script> -->
-
-    <!-- 🌟 Fixed Custom Audio Name Download Script - COMPLETE REPLACEMENT -->
-    <script>
-        // Audio name functionality - COMPLETE SOLUTION
-        document.addEventListener('DOMContentLoaded', function() {
-            const audioNameInput = document.getElementById('audio-name');
-            const setAudioNameBtn = document.getElementById('set-audio-name-btn');
-            const currentAudioNameSpan = document.getElementById('current-audio-name');
-            const generateBtn = document.getElementById('generate-btn');
-            let customAudioName = '';
-            let isGenerating = false;
-
-            // Set custom audio name
-            setAudioNameBtn.addEventListener('click', function() {
-                customAudioName = audioNameInput.value.trim();
-                if (customAudioName) {
-                    currentAudioNameSpan.textContent = customAudioName;
-                    currentAudioNameSpan.className = 'font-semibold text-green-600 dark:text-green-400';
-                    showNotification(`Audio name set to: ${customAudioName}`, 'success');
-                } else {
-                    currentAudioNameSpan.textContent = 'Default';
-                    currentAudioNameSpan.className = 'font-semibold';
-                    showNotification('Audio name cleared', 'info');
-                }
-            });
-
-            // Replace the original generate button functionality
-            if (generateBtn) {
-                // Remove any existing event listeners
-                const newGenerateBtn = generateBtn.cloneNode(true);
-                generateBtn.parentNode.replaceChild(newGenerateBtn, generateBtn);
-                
-                newGenerateBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation();
-                    
-                    if (isGenerating) {
-                        showNotification('Please wait, audio is already generating...', 'info');
-                        return;
-                    }
-                    
-                    generateTTSAudioWithCustomName();
-                });
-            }
-
-            async function generateTTSAudioWithCustomName() {
-                if (isGenerating) return;
-                isGenerating = true;
-                
-                // Show loading state
-                const generateBtn = document.getElementById('generate-btn');
-                const originalText = generateBtn.innerHTML;
-                generateBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-1.5 inline-block animate-spin"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg> Generating...';
-                generateBtn.disabled = true;
-
-                try {
-                    // Get all form data
-                    const requestData = {
-                        text: document.getElementById('text').value.trim(),
-                        voice_mode: document.querySelector('input[name="voice_mode"]:checked').value,
-                        temperature: parseFloat(document.getElementById('temperature').value),
-                        exaggeration: parseFloat(document.getElementById('exaggeration').value),
-                        cfg_weight: parseFloat(document.getElementById('cfg-weight').value),
-                        seed: parseInt(document.getElementById('seed').value),
-                        speed_factor: parseFloat(document.getElementById('speed-factor').value),
-                        language: document.getElementById('language').value,
-                        output_format: document.getElementById('output-format').value,
-                        split_text: document.getElementById('split-text-toggle').checked,
-                        chunk_size: parseInt(document.getElementById('chunk-size-slider').value) || 120,
-                        audio_name: customAudioName || ''
-                    };
-
-                    // Add voice-specific data
-                    if (requestData.voice_mode === 'predefined') {
-                        const voiceSelect = document.getElementById('predefined-voice-select');
-                        requestData.predefined_voice_id = voiceSelect.value;
-                        if (!requestData.predefined_voice_id || requestData.predefined_voice_id === 'none') {
-                            throw new Error('Please select a predefined voice');
-                        }
-                    } else if (requestData.voice_mode === 'clone') {
-                        const cloneSelect = document.getElementById('clone-reference-select');
-                        requestData.reference_audio_filename = cloneSelect.value;
-                        if (!requestData.reference_audio_filename || requestData.reference_audio_filename === 'none') {
-                            throw new Error('Please select a reference audio file');
-                        }
-                    }
-
-                    // Validate text
-                    if (!requestData.text) {
-                        throw new Error('Please enter text to synthesize');
-                    }
-
-                    showNotification('Generating audio... This may take a moment.', 'info');
-
-                    const response = await fetch('/tts', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(requestData)
-                    });
-
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`Server error: ${response.status} - ${errorText}`);
-                    }
-
-                    const blob = await response.blob();
-                    
-                    if (blob.size === 0) {
-                        throw new Error('Generated audio is empty');
-                    }
-
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    
-                    // Use custom name or generate one
-                    let finalFilename;
-                    if (customAudioName) {
-                        finalFilename = `${customAudioName}.${requestData.output_format}`;
-                    } else {
-                        const contentDisposition = response.headers.get('Content-Disposition');
-                        if (contentDisposition && contentDisposition.includes('filename=')) {
-                            const match = contentDisposition.match(/filename="([^"]+)"/);
-                            finalFilename = match ? match[1] : `tts_output.${requestData.output_format}`;
-                        } else {
-                            finalFilename = `tts_output.${requestData.output_format}`;
-                        }
-                    }
-                    
-                    a.download = finalFilename;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(url);
-
-                    showNotification(`Audio "${finalFilename}" downloaded successfully!`, 'success');
-
-                } catch (error) {
-                    console.error('Error generating TTS audio:', error);
-                    showNotification('Error: ' + error.message, 'error');
-                } finally {
-                    // Restore button state
-                    isGenerating = false;
-                    const generateBtn = document.getElementById('generate-btn');
-                    generateBtn.innerHTML = originalText;
-                    generateBtn.disabled = false;
-                }
-            }
-
-            // Helper function to show notifications
-            function showNotification(message, type = 'info') {
-                const notificationArea = document.getElementById('notification-area');
-                if (notificationArea) {
-                    const notification = document.createElement('div');
-                    notification.className = `p-3 rounded-md mb-2 ${
-                        type === 'success' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                        type === 'error' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-                        'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                    }`;
-                    notification.textContent = message;
-                    notificationArea.appendChild(notification);
-                    
-                    setTimeout(() => {
-                        if (notification.parentNode) {
-                            notification.remove();
-                        }
-                    }, 5000);
-                }
-            }
-
-            // Copy, Paste, Clear buttons functionality (from original script)
-            const textarea = document.getElementById("text");
-            const copyBtn = document.getElementById("copy-btn");
-            const pasteBtn = document.getElementById("paste-btn");
-            const clearBtn = document.getElementById("clear-btn");
-            const popup = document.getElementById("popup-msg");
-
-            function showPopup(message) {
-                if (popup) {
-                    popup.innerText = message;
-                    popup.classList.remove("opacity-0", "pointer-events-none");
-                    setTimeout(() => {
-                        popup.classList.add("opacity-0", "pointer-events-none");
-                    }, 2000);
-                }
-            }
-
-            if (copyBtn) {
-                copyBtn.addEventListener("click", async () => {
-                    try {
-                        await navigator.clipboard.writeText(textarea.value);
-                        showPopup("✅ Text copied!");
-                    } catch (err) {
-                        showPopup("⚠ Clipboard blocked — copy manually.");
-                    }
-                });
-            }
-
-            if (pasteBtn) {
-                pasteBtn.addEventListener("click", async () => {
-                    try {
-                        const text = await navigator.clipboard.readText();
-                        textarea.value += (textarea.value ? "\n" : "") + text;
-                        showPopup("📥 Text pasted!");
-                    } catch (err) {
-                        const input = document.createElement("textarea");
-                        input.setAttribute("placeholder", "Paste text here...");
-                        input.className = "fixed bottom-10 left-1/2 -translate-x-1/2 w-[90%] h-[100px] border border-slate-400 rounded-xl p-2 bg-white shadow-xl z-[9999]";
-                        document.body.appendChild(input);
-                        input.focus({ preventScroll: true });
-                        showPopup("📱 Mobile paste box opened");
-                        input.addEventListener("blur", () => {
-                            textarea.value += (textarea.value ? "\n" : "") + input.value;
-                            document.body.removeChild(input);
-                            showPopup("📥 Text added manually!");
-                        });
-                    }
-                });
-            }
-
-            if (clearBtn) {
-                clearBtn.addEventListener("click", () => {
-                    textarea.value = "";
-                    document.getElementById("char-count").innerText = "0";
-                    showPopup("🗑 Cleared!");
-                });
-            }
-
-            if (textarea) {
-                textarea.addEventListener("input", () => {
-                    document.getElementById("char-count").innerText = textarea.value.length;
-                });
-            }
-
-            console.log('Custom TTS interface loaded successfully - Single request mode');
-        });
-    </script>
 </body>
+
 </html>
