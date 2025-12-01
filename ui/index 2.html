@@ -63,9 +63,33 @@
                             <label for="text" class="label-base">Generate high-quality speech in 24+ languages with voice cloning capabilities.
 
 🌐 24+ Languages:- Arabic, Chinese, Danish, Dutch, English, Finnish, French, German, Greek, Hebrew, Hindi, Italian, Japanese, Korean, Malay, Norwegian, Polish, Portuguese, Russian, Spanish, Swedish, Swahili, Turkish</label>
+                             <label for="text" class="label-base">WEBSITE:🌐👇👇👇👇👇</label>
+
+<div class="mb-2">
+    <a href="https://nzg73.blogspot.com" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 underline text-sm">
+        <span class="font-medium">👉NZG73</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+    </a>
+</div>
                              <label for="text" class="label-base">Contact Email: nzgnzg73@gmail.com</label>
-                             <label for="text" class="label-base">🎥 YouTube Channel: @nzg73 🔗 https://youtube.com/@NZG73 
-</label>
+                             <label for="text" class="label-base">YouTube 👇👇</label>
+
+<div class="mb-2">
+    <a href="https://youtube.com/@NZG73" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 underline text-sm">
+        <span class="font-medium">👉@NZG73</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+    </a>
+</div>
                            
 
                             <div class="mb-5">
@@ -254,14 +278,28 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
 
 <!--.............................................................................................-->
 
-<!--.............................................................................................-->
-
-                                <!-- 🌟 Accordion Start Added Buttons -->
+<!-- ============ START: Main Settings Arrow  ============ -->
 
 
 
+<!-- ============ start: main collapsible section ============ -->
 
-                              <div class="mb-6">
+<!-- Main Settings Collapse Button -->
+<button type="button" id="main-settings-toggle" class="w-full text-left mb-6 focus:outline-none group">
+    <div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors border border-slate-300 dark:border-slate-600">
+        <span class="text-sm font-bold label-base uppercase tracking-wider">Main Settings</span>
+        <span class="text-slate-500 dark:text-slate-400 transition-transform duration-300 ease-in-out group-hover:text-indigo-500">
+            <svg id="main-settings-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 transition-transform duration-300">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+        </span>
+    </div>
+</button>
+
+<!-- Main Settings Content - تمام سیٹنگز اس ڈیو کے اندر ہیں -->
+<div id="main-settings-content">
+
+<div class="mb-6">
     <label for="split-text-toggle"
         class="flex items-center cursor-pointer text-sm label-base select-none">
         <input type="checkbox" id="split-text-toggle" name="split_text"
@@ -412,7 +450,6 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
             </div>
     </details>
     </div>
- 
 
 
 <!--.............................................................................................-->
@@ -519,8 +556,6 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                                     <option value="en">English (en)</option>
                                                 </select>
 
-<!--.............................................................................................-->
-
 
                                                 <button type="button" id="multilingual-toggle-btn" class="btn-import"
                                                     title="Enable multilingual support (downloads additional models)">
@@ -541,7 +576,6 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                         </div>
                                         <div>
 
-<!--.............................................................................................-->
 
                                             <label for="output-format" class="label-base">Output Format</label>
                                             <select id="output-format" name="output_format" class="select-base w-36">
@@ -646,8 +680,8 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                                     </div>
                                 </details>
                             </div>
-                        </div>
 
+                        </div>
 
 <!--.............................................................................................-->
 
@@ -688,9 +722,55 @@ document.getElementById("restart-btn").addEventListener("click", async () => {
                 </div>
                 <div id="audio-player-container" class="mt-8"></div>
 
+</div> <!-- End of main-settings-content -->
+
+<!-- ============ END: Main Collapsible Section ============ -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('main-settings-toggle');
+        const contentDiv = document.getElementById('main-settings-content');
+        const arrowIcon = document.getElementById('main-settings-arrow');
+
+        // 1. پیج لوڈ ہونے پر چیک کریں کہ پرانی سیٹنگ کیا تھی (Saved State)
+        const isHidden = localStorage.getItem('mainSettingsHidden') === 'true';
+        
+        // فنکشن جو حالت (State) کو سیٹ کرے گا
+        function applyState(hidden) {
+            if (hidden) {
+                contentDiv.classList.add('hidden'); // چھپا دیں
+                arrowIcon.style.transform = 'rotate(-90deg)'; // تیر کا رخ موڑ دیں
+            } else {
+                contentDiv.classList.remove('hidden'); // دکھا دیں
+                arrowIcon.style.transform = 'rotate(0deg)'; // تیر سیدھا رکھیں
+            }
+        }
+
+        // شروع میں حالت لاگو کریں
+        applyState(isHidden);
+
+        // 2. جب بٹن پر کلک ہو
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // فارم سبمٹ ہونے سے روکیں
+            
+            // چیک کریں کہ ابھی چھپا ہوا ہے یا نہیں
+            const currentlyHidden = contentDiv.classList.contains('hidden');
+            const newState = !currentlyHidden; // الٹ کر دیں
+            
+            // نئی حالت لاگو کریں
+            applyState(newState);
+            
+            // براؤزر کی میموری میں محفوظ کریں
+            localStorage.setItem('mainSettingsHidden', newState);
+        });
+    });
+</script>
 
 
-                                       <!-- 🌟 Accordion EndAdded Buttons -->
+
+<!-- ============ END: Main Settings Collapsible Section ============ -->
+
+                                       <!-- 🌟 Audio File Name Buttons -->
 
 
 <!--.............................................................................................-->
